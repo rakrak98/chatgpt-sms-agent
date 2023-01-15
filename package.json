@@ -1,0 +1,27 @@
+{
+  "name": "chatgpt-sms-agent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rakrak98/chatgpt-sms-agent.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rakrak98/chatgpt-sms-agent/issues"
+  },
+  "homepage": "https://github.com/rakrak98/chatgpt-sms-agent#readme",
+  "dependencies": {
+    "openai": "^3.1.0",
+    "twilio": "^3.84.1"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
+  }
+}

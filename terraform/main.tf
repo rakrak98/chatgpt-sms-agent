@@ -6,6 +6,10 @@ resource "aws_lambda_function" "sms_processing_function" {
   filename         = "function.zip"
   source_code_hash = filebase64sha256("function.zip")
 }
+resource "aws_lambda_function_url" "test_latest" {
+  function_name      = aws_lambda_function.sms_processing_function.function_name
+  authorization_type = "NONE"
+}
 resource "aws_iam_role" "sms_processing_function_role" {
   name                = "SMSProcessingFunctionRole"
   managed_policy_arns = ["arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"]

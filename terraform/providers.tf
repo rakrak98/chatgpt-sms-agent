@@ -1,7 +1,5 @@
 terraform {
     backend "s3" {
-        bucket = var.bucket_name
-        key = var.tf_state_key
         region = "us-east-1"
     }
   required_providers {

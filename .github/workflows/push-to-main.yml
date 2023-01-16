@@ -34,7 +34,7 @@ jobs:
         run: npm test
 
       - name: Create artifact
-        run: zip -r terraform/function.zip .
+        run: zip -r terraform/function.zip src
       
       - name: Terraform Init
         id: init
@@ -45,6 +45,10 @@ jobs:
       - name: Terraform Validate
         id: validate
         run: terraform -chdir=terraform validate
+
+      - name: Terraform Fmt
+        id: fmt
+        run: terraform -chdir=terraform fmt -recursive -check
 
       - name: Terraform Plan
         id: plan

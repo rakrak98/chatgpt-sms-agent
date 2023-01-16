@@ -7,9 +7,9 @@ resource "aws_lambda_function" "sms_processing_function" {
   source_code_hash = filebase64sha256("function.zip")
 }
 resource "aws_iam_role" "sms_processing_function_role" {
-  name               = "SMSProcessingFunctionRole"
+  name                = "SMSProcessingFunctionRole"
   managed_policy_arns = ["arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"]
-  assume_role_policy = <<EOF
+  assume_role_policy  = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [

@@ -32,3 +32,21 @@ jobs:
 
       - name: Tests
         run: npm test
+
+      - name: Create artifact
+        run: zip -r function.zip .
+      
+      - name: Terraform Init
+        id: init
+        run: terraform -chdir=terraform init
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform -chdir=terraform validate
+
+      - name: Terraform Plan
+        id: plan
+        env:
+          TF_VAR_bucket_name: ${{ secrets.BUCKET_NAME }}
+          TF_VAR_tf_state_key: ${{ secrets.BUCKET_KEY }}
+        run: terraform -chdir=terraform plan

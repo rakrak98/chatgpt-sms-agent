@@ -1,6 +1,6 @@
 resource "aws_lambda_function" "sms_processing_function" {
   function_name = "SMSProcessingFunction"
-  role          = aws_iam_role.sms_processing_function_role
+  role          = aws_iam_role.sms_processing_function_role.arn
   handler       = "index.js"
 }
 resource "aws_iam_role" "sms_processing_function_role" {

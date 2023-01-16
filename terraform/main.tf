@@ -8,7 +8,7 @@ resource "aws_lambda_function" "sms_processing_function" {
 }
 resource "aws_iam_role" "sms_processing_function_role" {
   name               = "SMSProcessingFunctionRole"
-  managed_policy_arns = ["AWSLambdaBasicExecutionRole"]
+  managed_policy_arns = ["arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"]
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",

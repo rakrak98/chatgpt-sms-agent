@@ -3,8 +3,8 @@ resource "aws_lambda_function" "sms_processing_function" {
   role          = aws_iam_role.sms_processing_function_role.arn
   handler       = "index.js"
   runtime = "nodejs18.x"
-  filename = "function.zip"
-  source_code_hash = filebase64sha256("function.zip")
+  filename = "~/function.zip"
+  source_code_hash = filebase64sha256("~/function.zip")
 }
 resource "aws_iam_role" "sms_processing_function_role" {
   name               = "SMSProcessingFunctionRole"

@@ -34,7 +34,7 @@ jobs:
         run: npm test
 
       - name: Create artifact
-        run: zip -r function.zip .
+        run: zip -r ~/function.zip .
       
       - name: Terraform Init
         id: init

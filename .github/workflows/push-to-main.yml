@@ -1,0 +1,22 @@
+name: Update and Deploy Lambda
+run-name: ${{ github.actor }} is running an action to update and deploy the lambda
+on:
+  push:
+    branches: [main]
+jobs:
+  npm-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 19
+
+      - name: npm Install
+        run: npm install
+
+      - name: Tests
+        run: npm test

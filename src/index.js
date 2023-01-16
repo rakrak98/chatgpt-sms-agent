@@ -21,5 +21,4 @@ exports.handler = async function(context, event, callback) {
     console.log("From: ", fromPhoneNumber);
     console.log("Context: ", context);
     console.log("Event:", event);
-    callback(null, "Message Received");
 }

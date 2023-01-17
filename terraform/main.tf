@@ -11,6 +11,7 @@ resource "aws_lambda_function" "sms_processing_function" {
       TWILIO_ACCOUNT_SID        = var.TWILIO_ACCOUNT_SID,
       TWILIO_ACCOUNT_AUTH_TOKEN = var.TWILIO_ACCOUNT_AUTH_TOKEN
       PERSONAL_TWILIO_PHONE_NUM = var.PERSONAL_TWILIO_PHONE_NUM
+      OPENAI_API_KEY = var.OPENAI_API_KEY
     }
   }
 }

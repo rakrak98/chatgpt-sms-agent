@@ -16,7 +16,7 @@ exports.handler = async function(context, event, callback) {
     const finalBodyObj = {};
     for (let val in parsedBodyObject) {
         const parsedObj = val.split("=");
-        finalBodyObj[parsedObj[0]] = parsedBodyObject[1];
+        finalBodyObj[parsedObj[0]] = parsedObj[1];
     }
     // const configuration = new Configuration({
     //     apiKey: process.env.OPENAI_API_KEY
@@ -30,10 +30,6 @@ exports.handler = async function(context, event, callback) {
     // });
     // twiml.message(response.data.choices[0].text);
     console.log("Message Received in the logs!: ", finalBodyObj);
-    console.log("From: ", fromPhoneNumber);
-    console.log("Context: ", context);
-    console.log("Event:", event);
-    console.log("Types");
-    console.log("Type of event", typeof(event));
-    console.log("Type of context", typeof(context));
+    console.log("Array of equals ", parsedBodyObject);
+    console.log("");
 }

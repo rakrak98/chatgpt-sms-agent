@@ -18,7 +18,7 @@ context.body is type string
 exports.handler = async function(context, event, callback) {
     const twiml = new MessagingResponse();
     const bodyObject = parseB64StrToObj(context.body);
-    const prettyPhoneNumber = bodyObject["From"];
+    const prettyPhoneNumber = bodyObject["From"].replace("%2B", "+");
     const receivedTextBody = bodyObject["Body"];
     const twilio_client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_ACCOUNT_AUTH_TOKEN);
     await twilio_client.messages

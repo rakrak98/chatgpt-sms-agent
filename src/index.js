@@ -13,6 +13,11 @@ exports.handler = async function(context, event, callback) {
     const inBoundMsg = Buffer.from(context.body, "base64");
     const bodyObject = inBoundMsg.toString("utf8");
     const parsedBodyObject = bodyObject.split("&");
+    const finalBodyObj = {};
+    for (let val in parsedBodyObject) {
+        const parsedObj = val.split("=");
+        finalBodyObj[parsedObj[0]] = parsedBodyObject[1];
+    }
     // const configuration = new Configuration({
     //     apiKey: process.env.OPENAI_API_KEY
     // });
@@ -24,7 +29,7 @@ exports.handler = async function(context, event, callback) {
     //     frequency_penalty: 0.7
     // });
     // twiml.message(response.data.choices[0].text);
-    console.log("Message Received in the logs!: ", parsedBodyObject);
+    console.log("Message Received in the logs!: ", finalBodyObj);
     console.log("From: ", fromPhoneNumber);
     console.log("Context: ", context);
     console.log("Event:", event);

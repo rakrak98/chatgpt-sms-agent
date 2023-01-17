@@ -5,6 +5,13 @@ resource "aws_lambda_function" "sms_processing_function" {
   runtime          = "nodejs18.x"
   filename         = "function.zip"
   source_code_hash = filebase64sha256("function.zip")
+
+  environment {
+    variables = {
+      TWILIO_ACCOUNT_SID        = var.TWILIO_ACCOUNT_SID,
+      TWILIO_ACCOUNT_AUTH_TOKEN = var.TWILIO_ACCOUNT_AUTH_TOKEN
+    }
+  }
 }
 resource "aws_lambda_function_url" "test_latest" {
   function_name      = aws_lambda_function.sms_processing_function.function_name

@@ -38,8 +38,5 @@ exports.handler = async function(context, event, callback) {
     //     frequency_penalty: 0.7
     // });
     // twiml.message(response.data.choices[0].text);
-    console.log("Message Received in the logs!: ", finalBodyObj);
-    console.log("Array of equals ", parsedBodyObject);
-    console.log("");
 }
 exports.parseB64StrToObj = parseB64StrToObj;

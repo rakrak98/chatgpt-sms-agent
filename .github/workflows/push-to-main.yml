@@ -55,6 +55,7 @@ jobs:
         env:
           TF_VAR_TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TF_VAR_TWILIO_ACCOUNT_AUTH_TOKEN: ${{ secrets.TWILIO_ACCOUNT_AUTH_TOKEN }}
+          TF_VAR_PERSONAL_TWILIO_PHONE_NUM: ${{ secrets.PERSONAL_TWILIO_PHONE_NUM }}
         run: terraform -chdir=terraform plan
 
       - name: Terraform Apply
@@ -62,4 +63,5 @@ jobs:
         env:
           TF_VAR_TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TF_VAR_TWILIO_ACCOUNT_AUTH_TOKEN: ${{ secrets.TWILIO_ACCOUNT_AUTH_TOKEN }}
+          TF_VAR_PERSONAL_TWILIO_PHONE_NUM: ${{ secrets.PERSONAL_TWILIO_PHONE_NUM }}
         run: terraform -chdir=terraform apply -auto-approve

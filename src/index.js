@@ -21,7 +21,7 @@ exports.handler = async function(context, event, callback) {
     const prettyPhoneNumber = bodyObject["From"];
     const receivedTextBody = bodyObject["Body"];
     const twilio_client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_ACCOUNT_AUTH_TOKEN);
-    twilio_client.messages
+    await twilio_client.messages
         .create({
             body: receivedTextBody,
             from: process.env.PERSONAL_TWILIO_PHONE_NUM,

@@ -14,8 +14,8 @@ exports.handler = async function(context, event, callback) {
     const bodyObject = inBoundMsg.toString("utf8");
     const parsedBodyObject = bodyObject.split("&");
     const finalBodyObj = {};
-    for (let val in parsedBodyObject) {
-        const parsedObj = val.split("=");
+    for (let i = 0; i < parsedBodyObject.length; i++) {
+        const parsedObj = parsedBodyObject[i].split("=");
         finalBodyObj[parsedObj[0]] = parsedObj[1];
     }
     // const configuration = new Configuration({

@@ -32,6 +32,9 @@ exports.handler = async function(context, event, callback) {
     });
     if (!response) throw new Error("Open API response is null of defined. Actual response val: " + response);
     const twiml = new MessagingResponse();
+    console.log("response", response);
+    console.log("response.data", response.data);
+    console.log("response.data.choices", response.data.choices);
     twiml.message(response.data.choices[0].text);
     const twilio_client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_ACCOUNT_AUTH_TOKEN);
     await twilio_client.messages

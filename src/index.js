@@ -31,24 +31,18 @@ exports.handler = async function(context, event, callback) {
         frequency_penalty: 0.7
     });
     if (!response) throw new Error("Open API response is null of defined. Actual response val: " + response);
-    const twiml = new MessagingResponse();
     console.log("response", response);
     console.log("response.data", response.data);
     console.log("response.data.choices", response.data.choices);
     console.log(response.data.choices[0].text);
     console.log(response.data.choices[0].text.replace(/\n/g, ' '));
-    twiml.message(response.data.choices[0].text.replace(/\n/g, ' '));
-    try {
-        const twilio_client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_ACCOUNT_AUTH_TOKEN);
-        await twilio_client.messages
-            .create({
-                body: twiml,
-                from: process.env.PERSONAL_TWILIO_PHONE_NUM,
-                to: prettyPhoneNumber
-            }).then(message => console.log("Callback of twilio msg", message));
-    } catch (error) {
-        console.log(error);
-        console.trace();
-    }
+    const responseMsg = response.data.choices[0].text.replace(/\n/g, ' ');
+    const twilio_client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_ACCOUNT_AUTH_TOKEN);
+    await twilio_client.messages
+        .create({
+            body: responseMsg,
+            from: process.env.PERSONAL_TWILIO_PHONE_NUM,
+            to: prettyPhoneNumber
+        }).then(message => console.log("Callback of twilio msg", message));
 }
 exports.parseB64StrToObj = parseB64StrToObj;

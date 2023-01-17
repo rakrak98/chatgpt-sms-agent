@@ -1,6 +1,10 @@
 const { Configuration, OpenAIApi } = require("openai")
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
+/*
+context and event come in as object type
+context.body is type string
+*/
 exports.handler = async function(context, event, callback) {
     const twiml = new MessagingResponse();
     console.log("Type of event", typeof(event));
@@ -20,7 +24,7 @@ exports.handler = async function(context, event, callback) {
     //     frequency_penalty: 0.7
     // });
     // twiml.message(response.data.choices[0].text);
-    console.log("Message Received in the logs!: ", msgBody);
+    console.log("Message Received in the logs!: ", inBoundMsg);
     console.log("From: ", fromPhoneNumber);
     console.log("Context: ", context);
     console.log("Event:", event);

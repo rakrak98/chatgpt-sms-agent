@@ -11,6 +11,7 @@ exports.handler = async function(context, event, callback) {
     console.log("Type of context", typeof(context.body));
     console.log("Context:", context);
     const inBoundMsg = Buffer.from(context.body, "base64");
+    const bodyObject = JSON.parse(inBoundMsg.toString("utf8"));
     const msgBody = inBoundMsg.Body;
     const fromPhoneNumber = inBoundMsg.From;
     // const configuration = new Configuration({
@@ -24,7 +25,7 @@ exports.handler = async function(context, event, callback) {
     //     frequency_penalty: 0.7
     // });
     // twiml.message(response.data.choices[0].text);
-    console.log("Message Received in the logs!: ", inBoundMsg);
+    console.log("Message Received in the logs!: ", bodyObject);
     console.log("From: ", fromPhoneNumber);
     console.log("Context: ", context);
     console.log("Event:", event);

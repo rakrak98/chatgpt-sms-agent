@@ -29,7 +29,7 @@ exports.handler = async function(context, event, callback) {
         temperature: 0.7,
         max_tokens: 3000,
         frequency_penalty: 0.7
-    }).then(response => console.log("Open AI Callback: ", response));
+    });
     if (!response) throw new Error("Open API response is null of defined. Actual response val: " + response);
     const twiml = new MessagingResponse();
     twiml.message(response.data.choices[0].text);

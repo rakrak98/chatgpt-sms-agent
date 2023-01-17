@@ -35,7 +35,9 @@ exports.handler = async function(context, event, callback) {
     console.log("response", response);
     console.log("response.data", response.data);
     console.log("response.data.choices", response.data.choices);
-    twiml.message(response.data.choices[0].text);
+    console.log(response.data.choices[0].text);
+    console.log(response.data.choices[0].text.replace(/\n/g, ' '));
+    twiml.message(response.data.choices[0].text.replace(/\n/g, ' '));
     const twilio_client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_ACCOUNT_AUTH_TOKEN);
     await twilio_client.messages
         .create({

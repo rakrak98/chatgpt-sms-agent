@@ -3,9 +3,9 @@ const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 exports.handler = async function(context, event, callback) {
     const twiml = new MessagingResponse();
-    const inBoundMsg = Buffer.from(event["body"], "base64");
-    const msgBody = inBoundMsg["Body"];
-    const fromPhoneNumber = inBoundMsg["From"];
+    const inBoundMsg = Buffer.from(event.body, "base64");
+    const msgBody = inBoundMsg.Body;
+    const fromPhoneNumber = inBoundMsg.From;
     // const configuration = new Configuration({
     //     apiKey: process.env.OPENAI_API_KEY
     // });
@@ -21,4 +21,7 @@ exports.handler = async function(context, event, callback) {
     console.log("From: ", fromPhoneNumber);
     console.log("Context: ", context);
     console.log("Event:", event);
+    console.log("Types");
+    console.log("Type of event", typeof(event));
+    console.log("Type of context", typeof(context));
 }

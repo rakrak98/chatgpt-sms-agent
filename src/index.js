@@ -30,6 +30,7 @@ exports.handler = async function(context, event, callback) {
         max_tokens: 3000,
         frequency_penalty: 0.7
     });
+    console.log("Open AI Response", response);
     const twiml = new MessagingResponse();
     twiml.message(response.data.choices[0].text);
     const twilio_client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_ACCOUNT_AUTH_TOKEN);

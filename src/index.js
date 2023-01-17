@@ -38,12 +38,17 @@ exports.handler = async function(context, event, callback) {
     console.log(response.data.choices[0].text);
     console.log(response.data.choices[0].text.replace(/\n/g, ' '));
     twiml.message(response.data.choices[0].text.replace(/\n/g, ' '));
-    const twilio_client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_ACCOUNT_AUTH_TOKEN);
-    await twilio_client.messages
-        .create({
-            body: twiml,
-            from: process.env.PERSONAL_TWILIO_PHONE_NUM,
-            to: prettyPhoneNumber
-        }).then(message => console.log("Callback of twilio msg", message));
+    try {
+        const twilio_client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_ACCOUNT_AUTH_TOKEN);
+        await twilio_client.messages
+            .create({
+                body: twiml,
+                from: process.env.PERSONAL_TWILIO_PHONE_NUM,
+                to: prettyPhoneNumber
+            }).then(message => console.log("Callback of twilio msg", message));
+    } catch (error) {
+        console.log(error);
+        console.trace();
+    }
 }
 exports.parseB64StrToObj = parseB64StrToObj;

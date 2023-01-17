@@ -3,6 +3,9 @@ const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 exports.handler = async function(context, event, callback) {
     const twiml = new MessagingResponse();
+    console.log("Type of event", typeof(event));
+    console.log("Type of context", typeof(event.body));
+    console.log("Event:", event);
     const inBoundMsg = Buffer.from(event.body, "base64");
     const msgBody = inBoundMsg.Body;
     const fromPhoneNumber = inBoundMsg.From;

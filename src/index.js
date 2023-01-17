@@ -1,23 +1,32 @@
 const { Configuration, OpenAIApi } = require("openai")
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
+exports.parseB64StrToObj =  function(bodyString) {
+    const inBoundMsg = Buffer.from(bodyString, "base64").toString("utf8");
+    const arrOfKVPairs = inBoundMsg.split("&");
+    const obj = {};
+    for(let i = 0; i < arrOfKVPairs.length; i++) {
+        const splitVal = arrOfKVPairs[i].split("=");
+        obj[splitVal[0]] = splitVal[1];
+    }
+    return obj;
+}
 /*
 context and event come in as object type
 context.body is type string
 */
 exports.handler = async function(context, event, callback) {
     const twiml = new MessagingResponse();
-    console.log("Type of event", typeof(event));
-    console.log("Type of context", typeof(context.body));
-    console.log("Context:", context);
-    const inBoundMsg = Buffer.from(context.body, "base64");
-    const bodyObject = inBoundMsg.toString("utf8");
-    const parsedBodyObject = bodyObject.split("&");
-    const finalBodyObj = {};
-    for (let i = 0; i < parsedBodyObject.length; i++) {
-        const parsedObj = parsedBodyObject[i].split("=");
-        finalBodyObj[parsedObj[0]] = parsedObj[1];
-    }
+    const bodyObject = parseB64StrToObj(context.body);
+    const prettyPhoneNumber = bodyObject["From"];
+    const receivedTextBody = bodyObject["Body"];
+    const twilio_client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_ACCOUNT_AUTH_TOKEN);
+    twilio_client.messages
+        .create({
+            body: receivedTextBody,
+            from: process.env.PERSONAL_TWILIO_PHONE_NUM,
+            to: prettyPhoneNumber
+        }).then(message => console.log("Callback of twilio msg", message));
     // const configuration = new Configuration({
     //     apiKey: process.env.OPENAI_API_KEY
     // });

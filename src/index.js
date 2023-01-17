@@ -1,7 +1,7 @@
 const { Configuration, OpenAIApi } = require("openai")
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
-exports.parseB64StrToObj =  function(bodyString) {
+var parseB64StrToObj = function (bodyString) {
     const inBoundMsg = Buffer.from(bodyString, "base64").toString("utf8");
     const arrOfKVPairs = inBoundMsg.split("&");
     const obj = {};
@@ -42,3 +42,4 @@ exports.handler = async function(context, event, callback) {
     console.log("Array of equals ", parsedBodyObject);
     console.log("");
 }
+exports.parseB64StrToObj = parseB64StrToObj;

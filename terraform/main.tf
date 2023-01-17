@@ -5,6 +5,7 @@ resource "aws_lambda_function" "sms_processing_function" {
   runtime          = "nodejs18.x"
   filename         = "function.zip"
   source_code_hash = filebase64sha256("function.zip")
+  timeout          = 60
 
   environment {
     variables = {

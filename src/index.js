@@ -11,6 +11,12 @@ var parseB64StrToObj = function (bodyString) {
     }
     return obj;
 }
+
+function generatePrompt(humanInput) {
+    return "Human: Hello, who are you?\n" +
+            "AI: I am an AI. How can I help you today?\n" +
+            "Human: " + humanInput;
+}
 /*
 context and event come in as object type
 context.body is type string
@@ -25,7 +31,7 @@ exports.handler = async function(context, event, callback) {
     const openai = new OpenAIApi(configuration);
     const response = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: receivedTextBody,
+        prompt: generatePrompt(receivedTextBody),
         temperature: 0.7,
         max_tokens: 3000,
         frequency_penalty: 0.7
